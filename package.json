@@ -1,0 +1,27 @@
+{
+  "name": "dion",
+  "version": "0.0.1",
+  "description": "dion",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MauriceButler/dion.git"
+  },
+  "keywords": [],
+  "author": "Maurice Butler <maurice.butler@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MauriceButler/dion/issues"
+  },
+  "homepage": "https://github.com/MauriceButler/dion",
+  "dependencies": {
+    "file-server": "^1.0.0"
+  },
+  "devDependencies": {
+    "fraudster": "^1.0.0",
+    "tape": "^3.0.3"
+  }
+}
