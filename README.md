@@ -24,7 +24,7 @@ Simple wrapper around a [file-server](https://www.npmjs.com/package/file-server)
     });
 
     // Starts serve with routes defined above:
-    require('http').createServer(router.createHandler()).listen(8080);
+    require('http').createServer(seaLion.createHandler()).listen(8080);
 
 
 
