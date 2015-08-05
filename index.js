@@ -27,7 +27,13 @@ Dion.prototype.serveDirectory = function(rootDirectory, mimeTypes, maxAge){
     var serveDirectory = this._fileServer.serveDirectory(rootDirectory, mimeTypes, maxAge);
 
     return function(request, response, tokens){
-        serveDirectory(request, response, tokens[Object.keys(tokens).pop()]);
+        var fileName = tokens[Object.keys(tokens).pop()];
+
+        if(typeof fileName !== 'string'){
+            throw new Error('Dion was not passed any tokens (serveDirectory must be passed at least one token, such as "/`path...`")');
+        }
+
+        serveDirectory(request, response, fileName);
     };
 };
 

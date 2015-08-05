@@ -215,3 +215,30 @@ test('Dion serveDirectory wraps return function', function (t) {
 
     serveDirectory(testRequest, testResponse, testTokens);
 });
+
+test('Dion serveDirectory should throw if passed a non-string path', function (t) {
+    t.plan(1);
+
+    var errorRegex = /Dion was not passed any tokens \(serveDirectory must be passed at least one token, such as "\/\`path\.\.\.\`"\)/,
+        testRequest = {},
+        testResponse = {},
+        testRootDirectory = {},
+        testMimeTypes = {},
+        testMaxAge = {},
+        testTokens = {};
+
+    var Dion = getCleanTestObject(),
+        dion = new Dion({
+            constructor: {
+                name: 'SeaLion'
+            },
+            notFound: function(){},
+            methodNotAllowed: function(){},
+            error: function(){}
+        }),
+        serveDirectory = dion.serveDirectory(testRootDirectory, testMimeTypes, testMaxAge);
+
+        t.throws(function(){
+            serveDirectory(testRequest, testResponse, testTokens);
+        }, errorRegex, 'Threw correct error');
+});
