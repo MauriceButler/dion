@@ -1,6 +1,6 @@
 {
   "name": "dion",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "dion",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "fraudster": "^1.0.0",
     "tape": "^3.0.3"
   },
-  "engines" : {
+  "engines": {
     "node": ">=8"
   }
 }
