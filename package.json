@@ -1,6 +1,6 @@
 {
   "name": "dion",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "dion",
   "main": "index.js",
   "scripts": {
@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/MauriceButler/dion",
   "dependencies": {
-    "file-server": "^1.0.0"
+    "file-server": "^2.0.0"
   },
   "devDependencies": {
     "fraudster": "^1.0.0",
     "tape": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=8"
   }
 }
