@@ -1,38 +1,39 @@
-#dion
+# dion
 
 Simple wrapper around a [file-server](https://www.npmjs.com/package/file-server), with an API to make working with [sea-lion](https://www.npmjs.com/package/sea-lion) easier.
 
 
 ## Example
 
-    var SeaLion = require('sea-lion'),
-        seaLion = new SeaLion(),
-        Dion = require('dion'),
-        dion = new Dion(seaLion);
+```js
+var SeaLion = require('sea-lion'),
+    seaLion = new SeaLion(),
+    Dion = require('dion'),
+    dion = new Dion(seaLion);
 
-    seaLion.add({
-        '/robots':  {
-            GET: dion.serveFile('./robots.txt', 'text/plain')
-        },
-        '/images/`imageFile...`': {
-            GET: dion.serveDirectory('./images', {
-                '.gif': 'image/gif',
-                '.png': 'image/png',
-                '.jpg': 'image/jpeg'
-            })
-        }
-    });
+seaLion.add({
+    '/robots':  {
+        GET: dion.serveFile('./robots.txt', 'text/plain')
+    },
+    '/images/`imageFile...`': {
+        GET: dion.serveDirectory('./images', {
+            '.gif': 'image/gif',
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg'
+        })
+    }
+});
 
-    // Starts serve with routes defined above:
-    require('http').createServer(seaLion.createHandler()).listen(8080);
+// Starts serve with routes defined above:
+require('http').createServer(seaLion.createHandler()).listen(8080);
+```
 
 
-
-### new Dion(seaLion)
+### `new Dion(seaLion)`
 
 The Dion constructor takes 1 arguments `seaLion` that must be an instance of [sea-lion](https://www.npmjs.com/package/sea-lion) (or at least quack like one...)
 
-### dion.serveFile(fileName, mimeType, [maxAge])
+### `dion.serveFile(fileName, mimeType, [maxAge])`
 
 The `serveFile` method takes 3 arguments `fileName`, `mimeType` and an optional `maxAge`.
 
@@ -44,12 +45,13 @@ The `serveFile` method takes 3 arguments `fileName`, `mimeType` and an optional 
 
 This will return a function that takes a `request` and a `response` and will stream the file to the response, or in the case of an error, call the corresponding error handlers on seaLion.
 
-    var serveRobots = dion.serveFile('./robots.txt', 'text/plain');
+```js
+var serveRobots = dion.serveFile('./robots.txt', 'text/plain');
 
-    serveRobots(request, response);
+serveRobots(request, response);
+```
 
-
-### dion.serveDirectory(rootDirectory, mimeTypes, [maxAge])
+### `dion.serveDirectory(rootDirectory, mimeTypes, [maxAge])`
 
 The `serveDirectory` method takes 3 arguments `rootDirectory`, `mimeTypes` and an optional `maxAge`.
 
@@ -61,13 +63,15 @@ The `serveDirectory` method takes 3 arguments `rootDirectory`, `mimeTypes` and a
 
 This will return a function that takes a `request`, `response` and a `tokens` object. The filename in the last key on the `tokens` object will be streamed to the response, or in the case of an error, call the corresponding error handlers on seaLion.
 
-    var serveImagesDirectory = dion.serveDirectory('./images', {
-        '.gif': 'image/gif',
-        '.png': 'image/png',
-        '.jpg': 'image/jpeg'
-    });
+```js
+var serveImagesDirectory = dion.serveDirectory('./images', {
+    '.gif': 'image/gif',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg'
+});
 
-    serveImagesDirectory(request, response, {
-        foo: 'bar',
-        fileName: '/kittens.jpg'
-    });
+serveImagesDirectory(request, response, {
+    foo: 'bar',
+    fileName: '/kittens.jpg'
+});
+```
